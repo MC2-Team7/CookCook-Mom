@@ -1,4 +1,4 @@
-# 👩🏻‍🍳 떡잎모합대:CookCookMom(가제)
+# 👩🏻‍🍳 떡잎모함대 : CookCookMom(가제)
 
 애플 디벨로퍼 아카데미 MC2 프로젝트 입니다.<br>
 'Team 7 떡잎모함대:CookCook'의 엄마용 IOS App입니다.

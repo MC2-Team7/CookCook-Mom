@@ -22,7 +22,7 @@ struct SendButton: View {
                 }
             }, label: {
                 Text("재료 보내기!")
-                    .frame(width: 380, height: 30)
+                    .frame(width: 350, height: 30)
                     .font(.title2)
             })
             //.alert(isPresented: $showingAlert, content: {

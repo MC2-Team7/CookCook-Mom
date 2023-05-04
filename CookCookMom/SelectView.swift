@@ -30,8 +30,8 @@ struct SelectView: View {
                     .font(.title2)
                     .bold()
                     .padding()
-//                ShoppingCart()
-//                    .padding()
+                ShoppingCart()
+                    .padding()
                 ScrollView {
                     LazyVGrid(columns: [GridItem(), GridItem(),GridItem()]) {
                         ForEach(ingredients, id: \.self) {

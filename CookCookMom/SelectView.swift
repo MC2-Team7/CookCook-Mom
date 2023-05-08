@@ -36,8 +36,8 @@ struct SelectView: View {
                     LazyVGrid(columns: [GridItem(), GridItem(),GridItem()]) {
                         ForEach(ingredients, id: \.self) {
                             ingredient in
-                            IngredientButton(
-                                selectedIngredients: $selectIngredients, ingredient: ingredient)
+//                            IngredientButton(
+//                                selectedIngredients: $selectIngredients, ingredient: ingredient)
                         }
                     }
                 }

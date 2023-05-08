@@ -7,8 +7,10 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct TestView: View {
-    @ObservedObject var viewModel: TestViewModel
+    @ObservedObject var viewModel: IngredientsViewModel
     var body: some View {
         ScrollView{
             ForEach(0..<3) { stack in
@@ -19,7 +21,6 @@ struct TestView: View {
                 }
             }
             Button{
-                viewModel.sendBtn()
             } label: {
                 Text("보내기")
             }
@@ -29,17 +30,17 @@ struct TestView: View {
 
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
-        TestView(viewModel: TestViewModel(ingredientModels: [.carrot,.cucumber,.fish,.garlic,.onion,.paprika,.potato,.spinach,.sweetPotato]))
+        TestView(viewModel: IngredientsViewModel(ingredientModels: [.carrot,.cucumber,.fish,.garlic,.onion,.paprika,.potato,.spinach,.sweetPotato]))
     }
 }
 
 struct ButtonSample: View {
     let imageKey: String
-    var viewModel: TestViewModel
+    var viewModel: IngredientsViewModel
     let index: Int
     var body: some View {
         Button {
-            viewModel.clickedBtn(index: index)
+            viewModel.isIngredientClicked(index: index)
             print(viewModel.ingredientModels[index].isChecked)
         } label: {
             Image(imageKey)

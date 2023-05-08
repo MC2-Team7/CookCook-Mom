@@ -16,33 +16,36 @@ struct SelectView: View {
     @State var selectIngredients: [Ingredient] = []
     
     var body: some View {
-        ZStack{
-            Color(red: 242 / 255, green: 242 / 255, blue: 247 / 255)
-                .ignoresSafeArea()
-            VStack {
-                NotificationButton()
-                    .padding()
-//                Text("Bonebayo")
-//                    .foregroundColor(.blue)
-//                    .bold()
-//                    .padding()
-                Text("아이에게 어떤 음식을 보낼까요?")
-                    .font(.title2)
-                    .bold()
-                    .padding()
-                ShoppingCart()
-                    .padding()
-                ScrollView {
-                    LazyVGrid(columns: [GridItem(), GridItem(),GridItem()]) {
-                        ForEach(ingredients, id: \.self) {
-                            ingredient in
-                            IngredientButton(
-                                selectedIngredients: $selectIngredients, ingredient: ingredient)
+        NavigationView {
+            ZStack{
+                Color(red: 242 / 255, green: 242 / 255, blue: 247 / 255)
+                    .ignoresSafeArea()
+                VStack {
+                    NavigationLink {
+                        NotificationListView()
+                    } label: {
+                        Image(systemName: "bell.fill")
+                    }
+//                    NotificationButton()
+                        .padding()
+                    Text("아이에게 어떤 음식을 보낼까요?")
+                        .font(.title2)
+                        .bold()
+                        .padding()
+                    ShoppingCart()
+                        .padding()
+                    ScrollView {
+                        LazyVGrid(columns: [GridItem(), GridItem(),GridItem()]) {
+                            ForEach(ingredients, id: \.self) {
+                                ingredient in
+                                IngredientButton(
+                                    selectedIngredients: $selectIngredients, ingredient: ingredient)
+                            }
                         }
                     }
-                }
-                SendButton(selectedIngredients: $selectIngredients)
-            }.padding()
+                    SendButton(selectedIngredients: $selectIngredients)
+                }.padding()
+            }
         }
     }
 }

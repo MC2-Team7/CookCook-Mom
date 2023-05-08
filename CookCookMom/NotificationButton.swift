@@ -9,13 +9,20 @@ import SwiftUI
 
 struct NotificationButton: View {
     var body: some View {
-        Button(action: {print("알림")}){ Image(systemName: "bell.fill")
-                .resizable()
-                .frame(width: 25, height: 25)
-                .foregroundColor(.black)
-                .padding(.top)
-                .padding(.leading, 300)
+        VStack {
+            Button(action: {
+                print("알림")
+                
+            }){
+                Image(systemName: "bell.fill")
+                    .resizable()
+                    .frame(width: 25, height: 25)
+                    .foregroundColor(.black)
+                    .padding(.top)
+                    .padding(.leading, 300)
+            }
         }
+        
     }
 }
 

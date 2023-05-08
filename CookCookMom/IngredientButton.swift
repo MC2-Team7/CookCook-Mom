@@ -10,9 +10,9 @@ import SwiftUI
 struct IngredientButton: View {
     @State private var buttonTapped = false
     @Binding var selectedIngredients: [Ingredient]
-
     
     var ingredient: Ingredient
+    
     var body: some View {
         VStack {
             ZStack {

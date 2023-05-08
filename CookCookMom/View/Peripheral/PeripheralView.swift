@@ -41,8 +41,6 @@ struct PeripheralView: View {
                     }
                 }
             }
-            
-            
         }
         .onDisappear {
             peripheral.stopAction()

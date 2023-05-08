@@ -74,6 +74,9 @@
 		187ADEFA29FA5D8400C4CDCD /* CookCookMom */ = {
 			isa = PBXGroup;
 			children = (
+				18DA57092A08E29C00EE16EA /* Model */,
+				18DA57082A08E29000EE16EA /* View */,
+				18DA57072A08E28600EE16EA /* ViewModel */,
 				6FCE85862A08D4980086FB52 /* Test */,
 				187ADEFB29FA5D8400C4CDCD /* CookCookMomApp.swift */,
 				187ADEFD29FA5D8400C4CDCD /* ContentView.swift */,
@@ -96,6 +99,27 @@
 				187ADF0229FA5D8500C4CDCD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		18DA57072A08E28600EE16EA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		18DA57082A08E29000EE16EA /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18DA57092A08E29C00EE16EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		6FCE85862A08D4980086FB52 /* Test */ = {

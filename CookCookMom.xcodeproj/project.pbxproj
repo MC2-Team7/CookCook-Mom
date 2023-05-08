@@ -12,6 +12,13 @@
 		187ADF0029FA5D8500C4CDCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 187ADEFF29FA5D8500C4CDCD /* Assets.xcassets */; };
 		187ADF0329FA5D8500C4CDCD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 187ADF0229FA5D8500C4CDCD /* Preview Assets.xcassets */; };
 		187ADF0A29FA5F2500C4CDCD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 187ADF0929FA5F2500C4CDCD /* .gitignore */; };
+		36673D292A00D1DA001EEB19 /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36673D282A00D1DA001EEB19 /* NotificationButton.swift */; };
+		36673D2B2A00D1E2001EEB19 /* IngredientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36673D2A2A00D1E2001EEB19 /* IngredientButton.swift */; };
+		36673D2D2A00D1E8001EEB19 /* SendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36673D2C2A00D1E8001EEB19 /* SendButton.swift */; };
+		36673D2F2A00D1EC001EEB19 /* SelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36673D2E2A00D1EC001EEB19 /* SelectView.swift */; };
+		36673D512A0136F0001EEB19 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36673D502A0136F0001EEB19 /* ShoppingCart.swift */; };
+		36673D532A023BDD001EEB19 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36673D522A023BDD001EEB19 /* Ingredient.swift */; };
+		36673D552A0282E5001EEB19 /* IngredientC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36673D542A0282E5001EEB19 /* IngredientC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +28,13 @@
 		187ADEFF29FA5D8500C4CDCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		187ADF0229FA5D8500C4CDCD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		187ADF0929FA5F2500C4CDCD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		36673D282A00D1DA001EEB19 /* NotificationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationButton.swift; sourceTree = "<group>"; };
+		36673D2A2A00D1E2001EEB19 /* IngredientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientButton.swift; sourceTree = "<group>"; };
+		36673D2C2A00D1E8001EEB19 /* SendButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendButton.swift; sourceTree = "<group>"; };
+		36673D2E2A00D1EC001EEB19 /* SelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectView.swift; sourceTree = "<group>"; };
+		36673D502A0136F0001EEB19 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
+		36673D522A023BDD001EEB19 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		36673D542A0282E5001EEB19 /* IngredientC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,13 @@
 			children = (
 				187ADEFB29FA5D8400C4CDCD /* CookCookMomApp.swift */,
 				187ADEFD29FA5D8400C4CDCD /* ContentView.swift */,
+				36673D2E2A00D1EC001EEB19 /* SelectView.swift */,
+				36673D2A2A00D1E2001EEB19 /* IngredientButton.swift */,
+				36673D2C2A00D1E8001EEB19 /* SendButton.swift */,
+				36673D282A00D1DA001EEB19 /* NotificationButton.swift */,
+				36673D502A0136F0001EEB19 /* ShoppingCart.swift */,
+				36673D522A023BDD001EEB19 /* Ingredient.swift */,
+				36673D542A0282E5001EEB19 /* IngredientC.swift */,
 				187ADEFF29FA5D8500C4CDCD /* Assets.xcassets */,
 				187ADF0129FA5D8500C4CDCD /* Preview Content */,
 			);
@@ -141,8 +162,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36673D2F2A00D1EC001EEB19 /* SelectView.swift in Sources */,
+				36673D292A00D1DA001EEB19 /* NotificationButton.swift in Sources */,
 				187ADEFE29FA5D8400C4CDCD /* ContentView.swift in Sources */,
+				36673D2D2A00D1E8001EEB19 /* SendButton.swift in Sources */,
+				36673D532A023BDD001EEB19 /* Ingredient.swift in Sources */,
+				36673D2B2A00D1E2001EEB19 /* IngredientButton.swift in Sources */,
 				187ADEFC29FA5D8400C4CDCD /* CookCookMomApp.swift in Sources */,
+				36673D512A0136F0001EEB19 /* ShoppingCart.swift in Sources */,
+				36673D552A0282E5001EEB19 /* IngredientC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +299,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CookCookMom/Preview Content\"";
-				DEVELOPMENT_TEAM = DR54KKAU8Z;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -279,6 +307,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,7 +329,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CookCookMom/Preview Content\"";
-				DEVELOPMENT_TEAM = DR54KKAU8Z;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -308,6 +337,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

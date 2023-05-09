@@ -13,6 +13,9 @@ class PeripheralViewModel: NSObject, ObservableObject {
     
     @Published var message: String = ""
     @Published var isPossibleToSend: Bool = false
+    
+    
+    @Published var isSent: Bool = false
     var peripheralManager: CBPeripheralManager!
     var transferCharacteristic: CBMutableCharacteristic?
     var connectedCentral: CBCentral?
@@ -25,6 +28,7 @@ class PeripheralViewModel: NSObject, ObservableObject {
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: true])
     }
     
+    // switch 메소드 - true 일 때, 
     func switchChanged() {
         if isPossibleToSend {
             peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [TransferService.serviceUUID]])
@@ -34,9 +38,11 @@ class PeripheralViewModel: NSObject, ObservableObject {
         }
     }
     
+    // 뷰 나갈 시, 종료
     func stopAction() {
         peripheralManager.stopAdvertising()
     }
+    
     
     private func setUpPeripheral() {
         let transferCharacteristic = CBMutableCharacteristic(type: TransferService.characteristicUUID,
@@ -63,11 +69,13 @@ class PeripheralViewModel: NSObject, ObservableObject {
         
 
         if PeripheralViewModel.sendingEOM {
-            let didSend = peripheralManager.updateValue("EOM".data(using: .utf8)!, for: transferCharacteristic, onSubscribedCentrals: nil)
+            let didSend = peripheralManager.updateValue("EOM".data(using: .utf8)!, for:
+                                                            transferCharacteristic, onSubscribedCentrals: nil)
             
             if didSend {
                 PeripheralViewModel.sendingEOM = false
                 print("Sent: EOM")
+                isSent = true
             }
             return
         }
@@ -111,6 +119,7 @@ class PeripheralViewModel: NSObject, ObservableObject {
                   
                     PeripheralViewModel.sendingEOM = false
                     print("Sent: EOM")
+                    isPossibleToSend = false
                 }
                 return
             }
@@ -121,6 +130,9 @@ class PeripheralViewModel: NSObject, ObservableObject {
 
 extension PeripheralViewModel: CBPeripheralManagerDelegate {
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        
+//        isPossibleToSend = peripheral.state == .poweredOn
+        
         switch peripheral.state {
         case .poweredOn:
             print(".powerOn")
@@ -193,3 +205,5 @@ extension PeripheralViewModel: CBPeripheralManagerDelegate {
         }
     }
 }
+
+

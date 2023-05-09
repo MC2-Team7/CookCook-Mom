@@ -48,6 +48,13 @@ class IngredientsViewModel : ObservableObject {
         }
         return sendMessage
     }
+    
+    func resetIngredients() {
+        for index in ingredientModels.indices {
+            ingredientModels[index].isChecked = false
+        }
+        clickCount = 0
+    }
 }
 
 

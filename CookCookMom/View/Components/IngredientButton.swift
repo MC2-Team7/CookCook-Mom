@@ -9,6 +9,7 @@ import SwiftUI
 
 struct IngredientButton: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
+    @StateObject var peripheral: PeripheralViewModel = PeripheralViewModel()
     var index: Int
 
     
@@ -17,6 +18,7 @@ struct IngredientButton: View {
         VStack {
             Button {
                 ingredientsViewModel.isIngredientClicked(index: index)
+                peripheral.isPossibleToSend = false
             } label: {
                 Image(ingredient.imageKey)
                     .resizable()

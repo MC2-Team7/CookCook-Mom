@@ -8,14 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var ingredientsViewModel: IngredientsViewModel = IngredientsViewModel(ingredientModels: [.carrot,.mushroom,.fish,.scallion,.onion,.paprika,.potato,.eggplant,.meat])
+    @StateObject var peripheral: PeripheralViewModel = PeripheralViewModel()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("CookCook, Mom!")
-        }
-        .padding()
+        SendView(ingredientsViewModel: ingredientsViewModel, peripheral: peripheral)
     }
 }
 

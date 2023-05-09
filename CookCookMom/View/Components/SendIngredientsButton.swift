@@ -30,7 +30,7 @@ struct SendIngredientsButton: View {
 
 struct SendIngredientsButton_Previews: PreviewProvider {
     static var previews: some View {
-        SendIngredientsButton(sendViewModel: IngredientsViewModel(ingredientModels: [.carrot,.cucumber,.fish,.garlic,.onion,.paprika,.potato,.spinach,.sweetPotato]), sendable: .constant(true))
+        SendIngredientsButton(sendViewModel: IngredientsViewModel(ingredientModels: [.carrot,.mushroom,.fish,.scallion,.onion,.paprika,.potato,.eggplant,.meat]), sendable: .constant(true))
         
        
     }

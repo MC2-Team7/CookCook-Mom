@@ -47,25 +47,27 @@ class CentralViewModel: NSObject, ObservableObject {
         centralManager.cancelPeripheralConnection(discoveredPeripheral)
     }
     
+    
     private func writeData() {
         guard let discoveredPeripheral = discoveredPeripheral, let transferCharacteristic = transferCharacteristic
         else {
             return
         }
         
-        while writeIterationsComplete < defaultIterations && discoveredPeripheral.canSendWriteWithoutResponse {
+        while writeIterationsComplete < defaultIterations &&
+                discoveredPeripheral.canSendWriteWithoutResponse {
             
-//            let mtu = discoveredPeripheral.maximumWriteValueLength (for: .withoutResponse)
-//            var rawPacket = [UInt8]()
-//
-//            let bytesToCopy: size_t = min(mtu, data.count)
-//            data.copyBytes(to: &rawPacket, count: bytesToCopy)
-//            let packetData = Data(bytes: &rawPacket, count: bytesToCopy)
-//
-//            let stringFromData = String(data: packetData, encoding: .utf8)
-//            os_log("Writing %d bytes: %s", bytesToCopy, String(describing: stringFromData))
-//
-//            discoveredPeripheral.writeValue(packetData, for: transferCharacteristic, type: .withoutResponse)
+            let mtu = discoveredPeripheral.maximumWriteValueLength (for: .withoutResponse)
+            var rawPacket = [UInt8]()
+
+            let bytesToCopy: size_t = min(mtu, data.count)
+            data.copyBytes(to: &rawPacket, count: bytesToCopy)
+            let packetData = Data(bytes: &rawPacket, count: bytesToCopy)
+
+            let stringFromData = String(data: packetData, encoding: .utf8)
+            os_log("Writing %d bytes: %s", bytesToCopy, String(describing: stringFromData))
+
+            discoveredPeripheral.writeValue(packetData, for: transferCharacteristic, type: .withoutResponse)
 //
             writeIterationsComplete += 1
         }
@@ -87,7 +89,7 @@ class CentralViewModel: NSObject, ObservableObject {
             self.discoveredPeripheral = connectedPeripheral
             centralManager.connect(connectedPeripheral, options: nil)
         } else {
-            centralManager.scanForPeripherals(withServices: [TransferService.serviceUUID], options: nil)
+            centralManager.scanForPeripherals(withServices: [TransferService.serviceUUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
         }
     }
 }
@@ -95,13 +97,11 @@ class CentralViewModel: NSObject, ObservableObject {
 
 extension CentralViewModel: CBCentralManagerDelegate {
     
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+    internal func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
         case .poweredOn:
             print(".powerOn")
             retrievePeripheral()
-            return
-            
         case .poweredOff :
             print(".powerOff")
             return
@@ -132,8 +132,11 @@ extension CentralViewModel: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
         guard RSSI.intValue >= -50 else {
+            os_log("Discovered perhiperal not in expected range, at %d", RSSI.intValue)
             return
         }
+        
+        os_log("Discovered %s at %d", String(describing: peripheral.name), RSSI.intValue)
         
         if discoveredPeripheral != peripheral {
             discoveredPeripheral = peripheral
@@ -143,7 +146,12 @@ extension CentralViewModel: CBCentralManagerDelegate {
     
     // 연결이 완료됐을 때 - 1대의 기기와의 견결
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        os_log("Peripheral Connected")
+        
+        
         centralManager.stopScan()
+        os_log("Scanning stopped")
+        
         
         connectionIterationsComplete += 1
         writeIterationsComplete = 0
@@ -161,6 +169,7 @@ extension CentralViewModel: CBCentralManagerDelegate {
     
     // 연결 종료
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        os_log("Perhiperal Disconnected")
         discoveredPeripheral = nil
         
         if connectionIterationsComplete < defaultIterations {
@@ -174,6 +183,13 @@ extension CentralViewModel: CBCentralManagerDelegate {
 
 extension CentralViewModel: CBPeripheralDelegate {
     
+    func peripheral(_ peripheral: CBPeripheral, didModifyServices invalidatedServices: [CBService]) {
+        
+        for service in invalidatedServices where service.uuid == TransferService.serviceUUID {
+            os_log("Transfer service is invalidated - rediscover services")
+            peripheral.discoverServices([TransferService.serviceUUID])
+        }
+    }
     // Characteristic
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if error != nil {
@@ -225,7 +241,11 @@ extension CentralViewModel: CBPeripheralDelegate {
         print("Received \(characteristicData.count) bytes: \(stringFromData)")
         
         if stringFromData == "EOM" {
-            message = String(data: data, encoding: .utf8) ?? ""
+            
+            DispatchQueue.main.async() {
+                self.message = String(data: self.data, encoding: .utf8) ?? ""
+            }
+            
             writeData()
             
         } else {

@@ -8,25 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var ingredientsViewModel: IngredientsViewModel = IngredientsViewModel(ingredientModels: [.carrot,.cucumber,.fish,.garlic,.onion,.paprika,.potato,.spinach,.sweetPotato])
+    @StateObject var peripheral: PeripheralViewModel = PeripheralViewModel()
     var body: some View {
-
-       //NavigationStack {
-       //    VStack {
-       //        NavigationLink(destination: CentralView()) {
-       //            Text("Central")
-       //        }
-       //        .buttonStyle(.borderedProminent)
-       //        .padding()
-       //        
-       //        NavigationLink(destination: PeripheralView()) {
-       //            Text("Peripharal")
-       //        }
-       //        .buttonStyle(.borderedProminent)
-       //        .padding()
-       //    }
-       //}
-
-        SelectView()
+        SendView(ingredientsViewModel: ingredientsViewModel, peripheral: peripheral)
     }
 }
 

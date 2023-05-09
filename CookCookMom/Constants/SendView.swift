@@ -21,7 +21,60 @@ struct SendView: View {
                     }
                 }
             }
-            SendIngredientsButton(sendViewModel: IngredientsViewModel(ingredientModels: ingredientsViewModel.ingredientModels), sendable: $ingredientsViewModel.canSend)
+//            Button("보내기"){
+//                peripheral.message = ingredientsViewModel.sendIngredientsMessage()
+//                print(peripheral.message)
+//                peripheral.isPossibleToSend = true
+//                peripheral.switchChanged()
+//            }
+//            .alert(isPresented: $peripheral.isSent) {
+//                Alert(title: Text("전송 완료"), message: Text("재료 전송이 완료되었습니다."), dismissButton: .default(Text("확인")) {
+//                    peripheral.isPossibleToSend = false
+//                    peripheral.isSent = false
+//                    peripheral.switchChanged()
+//                })
+//            }
+//            .padding()
+            
+            Button {
+                peripheral.message = ingredientsViewModel.sendIngredientsMessage()
+                print(peripheral.message)
+                peripheral.isPossibleToSend = true
+                peripheral.switchChanged()
+            } label: {
+                Text("재료 보내기")
+                    .frame(width: 280, height: 50)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .background(Color.blue)
+                    .cornerRadius(30)
+            }
+            .alert(isPresented: $peripheral.isSent) {
+                Alert(title: Text("전송 완료"), message: Text("재료 전송이 완료되었습니다."), dismissButton: .default(Text("확인")) {
+                    peripheral.isPossibleToSend = false
+                    peripheral.isSent = false
+                    peripheral.switchChanged()
+                    ingredientsViewModel.resetIngredients()
+                })
+            }
+            .padding(.top, 15)
+
+            //            Button("보내기"){
+            //                peripheral.message = ingredientsViewModel.sendIngredientsMessage()
+            //                print(peripheral.message)
+            //                peripheral.isPossibleToSend = true
+            //                DispatchQueue.main.async {
+            //                    peripheral.switchChanged()
+            //                }
+            //                ingredientsViewModel.resetIngredients()
+            //            }
+            //            .alert(isPresented: $peripheral.isPossibleToSend) {
+            //                Alert(title: Text("전송 완료"), message: Text("재료 전송이 완료되었습니다."), dismissButton: .default(Text("확인")) {
+            //                    peripheral.isPossibleToSend = false
+            //                    peripheral.switchChanged()
+            //                })
+            //            }
+            
         }
         .onDisappear {
             peripheral.stopAction()

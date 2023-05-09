@@ -22,47 +22,47 @@ class IngredientModel: Identifiable {
 extension IngredientModel {
     static let carrot = IngredientModel(
         name: "당근",
-        imageKey: "carrot",
+        imageKey: "carrot2D",
         isChecked: false
     )
-    static let cucumber = IngredientModel(
-        name: "오이",
-        imageKey: "cucumber",
+    static let mushroom = IngredientModel(
+        name: "버섯",
+        imageKey: "mushroom2D",
         isChecked: false
     )
     static let fish = IngredientModel(
         name: "생선",
-        imageKey: "fish",
+        imageKey: "fish2D",
         isChecked: false
     )
-    static let garlic = IngredientModel(
-        name: "마늘",
-        imageKey: "garlic",
+    static let scallion = IngredientModel(
+        name: "대파",
+        imageKey: "scallion2D",
         isChecked: false
     )
     static let onion = IngredientModel(
         name: "양파",
-        imageKey: "onion",
+        imageKey: "onion2D",
         isChecked: false
     )
     static let paprika = IngredientModel(
         name: "파프리카",
-        imageKey: "paprika",
+        imageKey: "paprika2D",
         isChecked: false
     )
     static let potato = IngredientModel(
         name: "감자",
-        imageKey: "potato",
+        imageKey: "potato2D",
         isChecked: false
     )
-    static let spinach = IngredientModel(
-        name: "시금치",
-        imageKey: "spinach",
+    static let eggplant = IngredientModel(
+        name: "가지",
+        imageKey: "eggplant2D",
         isChecked: false
     )
-    static let sweetPotato = IngredientModel(
-        name: "고구마",
-        imageKey: "sweetPotato",
+    static let meat = IngredientModel(
+        name: "고기",
+        imageKey: "meat2D",
         isChecked: false
     )
 

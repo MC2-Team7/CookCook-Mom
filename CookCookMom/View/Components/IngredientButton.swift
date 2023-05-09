@@ -18,24 +18,22 @@ struct IngredientButton: View {
         VStack {
             Button {
                 ingredientsViewModel.isIngredientClicked(index: index)
-                peripheral.isPossibleToSend = false
+//                peripheral.isPossibleToSend = false
             } label: {
                 Image(ingredient.imageKey)
                     .resizable()
-                    .frame(width: 75, height: 75)
+                    .frame(width: 70, height: 70)
                     .padding(15)
                     .background(ingredient.isChecked ? Color.blue : Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .padding()
             }
             Text(ingredient.name)
-            
         }
     }
 }
 
 struct IngredientButton_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientButton(ingredientsViewModel: IngredientsViewModel(ingredientModels: [.carrot,.cucumber,.fish,.garlic,.onion,.paprika,.potato,.spinach,.sweetPotato]), index: 0)
+        IngredientButton(ingredientsViewModel: IngredientsViewModel(ingredientModels: [.carrot,.mushroom,.fish,.scallion,.onion,.paprika,.potato,.eggplant,.meat]), index: 0)
     }
 }

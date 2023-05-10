@@ -12,6 +12,7 @@
 		187ADF0029FA5D8500C4CDCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 187ADEFF29FA5D8500C4CDCD /* Assets.xcassets */; };
 		187ADF0329FA5D8500C4CDCD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 187ADF0229FA5D8500C4CDCD /* Preview Assets.xcassets */; };
 		187ADF0A29FA5F2500C4CDCD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 187ADF0929FA5F2500C4CDCD /* .gitignore */; };
+		365467762A0B656800E929E6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 365467742A0B656800E929E6 /* Model.xcdatamodeld */; };
 		36673D292A00D1DA001EEB19 /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36673D282A00D1DA001EEB19 /* NotificationButton.swift */; };
 		36673D2B2A00D1E2001EEB19 /* IngredientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36673D2A2A00D1E2001EEB19 /* IngredientButton.swift */; };
 		36673D2D2A00D1E8001EEB19 /* SendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36673D2C2A00D1E8001EEB19 /* SendButton.swift */; };
@@ -34,6 +35,7 @@
 		187ADEFF29FA5D8500C4CDCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		187ADF0229FA5D8500C4CDCD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		187ADF0929FA5F2500C4CDCD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		365467752A0B656800E929E6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		36673D282A00D1DA001EEB19 /* NotificationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationButton.swift; sourceTree = "<group>"; };
 		36673D2A2A00D1E2001EEB19 /* IngredientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientButton.swift; sourceTree = "<group>"; };
 		36673D2C2A00D1E8001EEB19 /* SendButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendButton.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				36673D502A0136F0001EEB19 /* ShoppingCart.swift */,
 				36673D522A023BDD001EEB19 /* Ingredient.swift */,
 				36673D542A0282E5001EEB19 /* IngredientC.swift */,
+				365467742A0B656800E929E6 /* Model.xcdatamodeld */,
 				187ADEFF29FA5D8500C4CDCD /* Assets.xcassets */,
 				187ADF0129FA5D8500C4CDCD /* Preview Content */,
 			);
@@ -215,6 +218,7 @@
 				4075E7302A0B64450088E059 /* NotificationListView.swift in Sources */,
 				36673D2B2A00D1E2001EEB19 /* IngredientButton.swift in Sources */,
 				6FCE858A2A08D4C70086FB52 /* TestViewModel.swift in Sources */,
+				365467762A0B656800E929E6 /* Model.xcdatamodeld in Sources */,
 				187ADEFC29FA5D8400C4CDCD /* CookCookMomApp.swift in Sources */,
 				4075E72D2A0B642B0088E059 /* PersistenceController.swift in Sources */,
 				36673D512A0136F0001EEB19 /* ShoppingCart.swift in Sources */,
@@ -347,7 +351,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CookCookMom/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = L4S47TM436;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "\"CookCookMom\" use bluetooth";
@@ -363,7 +367,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mc2.CookCookMom;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CookCookMom.mama;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -379,7 +383,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CookCookMom/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = L4S47TM436;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "\"CookCookMom\" use bluetooth";
@@ -395,7 +399,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mc2.CookCookMom;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CookCookMom.mama;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -425,6 +429,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		365467742A0B656800E929E6 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				365467752A0B656800E929E6 /* Model.xcdatamodel */,
+			);
+			currentVersion = 365467752A0B656800E929E6 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 187ADEF029FA5D8400C4CDCD /* Project object */;
 }

@@ -9,10 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     
+    let persistenceController = PersistenceController.shared
+    
     @StateObject var ingredientsViewModel: IngredientsViewModel = IngredientsViewModel(ingredientModels: [.carrot,.mushroom,.fish,.scallion,.onion,.paprika,.potato,.eggplant,.meat])
     @StateObject var peripheral: PeripheralViewModel = PeripheralViewModel()
+    
     var body: some View {
         SendView(ingredientsViewModel: ingredientsViewModel, peripheral: peripheral)
+            .environment(\.managedObjectContext, persistenceController.container.viewContext)
     }
 }
 

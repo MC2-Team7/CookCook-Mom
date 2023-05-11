@@ -55,6 +55,7 @@ class IngredientsViewModel : ObservableObject {
         }
         clickCount = 0
     }
+    
 }
 
 

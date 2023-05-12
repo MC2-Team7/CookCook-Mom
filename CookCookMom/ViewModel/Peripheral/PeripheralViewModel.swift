@@ -1,10 +1,3 @@
-//
-//  PeripheralViewModel.swift
-//  CookCookMom
-//
-//  Created by 김예림 on 2023/05/08.
-//
-
 import Foundation
 import CoreBluetooth
 import os
@@ -13,9 +6,8 @@ class PeripheralViewModel: NSObject, ObservableObject {
     
     @Published var message: String = ""
     @Published var isPossibleToSend: Bool = false
+    @Published var isSendingData: Bool = false
     
-    
-    @Published var isSent: Bool = false
     var peripheralManager: CBPeripheralManager!
     var transferCharacteristic: CBMutableCharacteristic?
     var connectedCentral: CBCentral?
@@ -28,7 +20,7 @@ class PeripheralViewModel: NSObject, ObservableObject {
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: true])
     }
     
-    // switch 메소드 - true 일 때, 
+    // switch 메소드 - true 일 때,
     func switchChanged() {
         if isPossibleToSend {
             peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [TransferService.serviceUUID]])
@@ -49,11 +41,11 @@ class PeripheralViewModel: NSObject, ObservableObject {
                                                              properties: [.notify, .writeWithoutResponse],
                                                              value: nil,
                                                              permissions: [.readable, .writeable])
-
+        
         let transferService = CBMutableService(type: TransferService.serviceUUID, primary: true)
-
+        
         transferService.characteristics = [transferCharacteristic]
-
+        
         peripheralManager.add(transferService)
         
         self.transferCharacteristic = transferCharacteristic
@@ -61,43 +53,42 @@ class PeripheralViewModel: NSObject, ObservableObject {
     
     static var sendingEOM = false
     
+    
     private func sendData() {
-        
         guard let transferCharacteristic = transferCharacteristic else {
             return
         }
         
-
         if PeripheralViewModel.sendingEOM {
-            let didSend = peripheralManager.updateValue("EOM".data(using: .utf8)!, for:
-                                                            transferCharacteristic, onSubscribedCentrals: nil)
-            
+            let eomData = "EOM".data(using: .utf8)!
+            let didSend = peripheralManager.updateValue(eomData, for: transferCharacteristic, onSubscribedCentrals: nil)
             if didSend {
                 PeripheralViewModel.sendingEOM = false
                 print("Sent: EOM")
-                isSent = true
             }
             return
         }
         
         if sendDataIndex >= dataToSend.count {
+            isSendingData = false
+            dataToSend.removeAll() // Clear data buffer
+            sendDataIndex = 0 // Reset sendDataIndex
             return
         }
         
         var didSend = true
+        
         while didSend {
-            
             var amountToSend = dataToSend.count - sendDataIndex
+            
             if let mtu = connectedCentral?.maximumUpdateValueLength {
                 amountToSend = min(amountToSend, mtu)
             }
             
-
             let chunk = dataToSend.subdata(in: sendDataIndex..<(sendDataIndex + amountToSend))
             
             didSend = peripheralManager.updateValue(chunk, for: transferCharacteristic, onSubscribedCentrals: nil)
             
-
             if !didSend {
                 return
             }
@@ -105,33 +96,35 @@ class PeripheralViewModel: NSObject, ObservableObject {
             let stringFromData = String(data: chunk, encoding: .utf8)
             print("Sent \(chunk.count) bytes: \(String(describing: stringFromData))")
             
-
             sendDataIndex += amountToSend
-           
+            
             if sendDataIndex >= dataToSend.count {
-
                 PeripheralViewModel.sendingEOM = true
                 
-       
-                let eomSent = peripheralManager.updateValue("EOM".data(using: .utf8)!,
-                                                            for: transferCharacteristic, onSubscribedCentrals: nil)
+                let eomData = "EOM".data(using: .utf8)!
+                let eomSent = peripheralManager.updateValue(eomData, for: transferCharacteristic, onSubscribedCentrals: nil)
                 if eomSent {
-                  
                     PeripheralViewModel.sendingEOM = false
                     print("Sent: EOM")
                     isPossibleToSend = false
+                    dataToSend.removeAll() // Clear data buffer
+                    sendDataIndex = 0 // Reset sendDataIndex
                 }
+                
                 return
             }
         }
     }
+    
+    
+    
 }
 
 
 extension PeripheralViewModel: CBPeripheralManagerDelegate {
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         
-//        isPossibleToSend = peripheral.state == .poweredOn
+        //        isPossibleToSend = peripheral.state == .poweredOn
         
         switch peripheral.state {
         case .poweredOn:
@@ -165,34 +158,33 @@ extension PeripheralViewModel: CBPeripheralManagerDelegate {
         }
     }
     
-
+    
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
         print("Central subscribed to characteristic")
         
-        if let message = message.data(using: .utf8) {
-            dataToSend = message
+        if let messageData = message.data(using: .utf8) {
+            dataToSend = messageData
         }
-     
+        
         sendDataIndex = 0
         
-        connectedCentral = central
+        connectedCentral = nil
         
-
         sendData()
     }
     
-
+    
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic) {
         print("Central unsubscribed from characteristic")
         connectedCentral = nil
     }
     
-  
+    
     func peripheralManagerIsReady(toUpdateSubscribers peripheral: CBPeripheralManager) {
         sendData()
     }
     
-
+    
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
         for aRequest in requests {
             guard let requestValue = aRequest.value,
@@ -202,8 +194,12 @@ extension PeripheralViewModel: CBPeripheralManagerDelegate {
             
             print("Received write request of \(requestValue.count) bytes: \(stringFromData)")
             message = stringFromData
+            
+            // Append received data to the data buffer
+//            dataToSend.append(requestValue)
+            dataToSend = Data()
+            
+            sendDataIndex = 0
         }
     }
 }
-
-

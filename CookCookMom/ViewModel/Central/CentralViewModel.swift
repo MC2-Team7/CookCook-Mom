@@ -1,10 +1,3 @@
-//
-//  CentralViewModel.swift
-//  CookCookMom
-//
-//  Created by 김예림 on 2023/05/08.
-//
-
 import Foundation
 import CoreBluetooth
 import os
@@ -45,7 +38,11 @@ class CentralViewModel: NSObject, ObservableObject {
         }
         
         centralManager.cancelPeripheralConnection(discoveredPeripheral)
+        
+        // Start scanning again to discover new peripherals
+        centralManager.scanForPeripherals(withServices: [TransferService.serviceUUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
     }
+
     
     
     private func writeData() {
@@ -57,8 +54,8 @@ class CentralViewModel: NSObject, ObservableObject {
         while writeIterationsComplete < defaultIterations &&
                 discoveredPeripheral.canSendWriteWithoutResponse {
             
-            let mtu = discoveredPeripheral.maximumWriteValueLength (for: .withoutResponse)
-            var rawPacket = [UInt8]()
+            let mtu = discoveredPeripheral.maximumWriteValueLength(for: .withoutResponse)
+            var rawPacket = [UInt8](repeating: 0, count: mtu)
 
             let bytesToCopy: size_t = min(mtu, data.count)
             data.copyBytes(to: &rawPacket, count: bytesToCopy)
@@ -68,7 +65,7 @@ class CentralViewModel: NSObject, ObservableObject {
             os_log("Writing %d bytes: %s", bytesToCopy, String(describing: stringFromData))
 
             discoveredPeripheral.writeValue(packetData, for: transferCharacteristic, type: .withoutResponse)
-//
+
             writeIterationsComplete += 1
         }
         
@@ -76,6 +73,7 @@ class CentralViewModel: NSObject, ObservableObject {
             discoveredPeripheral.setNotifyValue(false, for: transferCharacteristic)
         }
     }
+
     
     // 전송 받기 시작 - 연결 시도
     private func retrievePeripheral() {
@@ -281,3 +279,5 @@ extension CentralViewModel: CBPeripheralDelegate {
         writeData()
     }
 }
+
+

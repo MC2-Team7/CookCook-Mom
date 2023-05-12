@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SendView: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
-    @StateObject var peripheral: PeripheralViewModel
+    @ObservedObject var peripheral: PeripheralViewModel
     
     var body: some View {
         ZStack{
@@ -36,6 +36,7 @@ struct SendView: View {
                     peripheral.message = ingredientsViewModel.sendIngredientsMessage()
                     print(peripheral.message)
                     peripheral.isPossibleToSend = true
+                    peripheral.isSendingData = true
                     peripheral.switchChanged()
                 } label: {
                     Text("재료 보내기")
@@ -45,10 +46,9 @@ struct SendView: View {
                         .background(Color.blue)
                         .cornerRadius(30)
                 }
-                .alert(isPresented: $peripheral.isSent) {
+                .alert(isPresented: $peripheral.isSendingData) {
                     Alert(title: Text("전송 완료"), message: Text("재료 전송이 완료되었습니다."), dismissButton: .default(Text("확인")) {
                         peripheral.isPossibleToSend = false
-                        peripheral.isSent = false
                         peripheral.switchChanged()
                         ingredientsViewModel.resetIngredients()
                     })

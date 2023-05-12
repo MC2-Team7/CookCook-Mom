@@ -10,6 +10,7 @@ import SwiftUI
 struct SendView: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
     @StateObject var peripheral: PeripheralViewModel
+    @State private var showModal = false
     
     var body: some View {
         NavigationView {
@@ -17,15 +18,26 @@ struct SendView: View {
                 Color(red: 242 / 255, green: 242 / 255, blue: 247 / 255)
                     .ignoresSafeArea()
                 VStack {
-                    NavigationLink {
-                        NotificationListView()
-                    } label: {
-                        Image(systemName: "bell.fill")
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                            .foregroundColor(.black)
-                            .padding(.top)
-                            .padding(.leading, 300)
+                    HStack {
+                        Button(action: { self.showModal = true}){ Image(systemName: "info.circle.fill")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundColor(.black)
+                                .padding([.top,.trailing])
+                        }.sheet(isPresented: self.$showModal) {
+                            DescriptionView()
+                        }
+                
+                        NavigationLink {
+                            NotificationListView()
+                        } label: {
+                            Image(systemName: "bell.fill")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundColor(.black)
+                                .padding(.top)
+                                .padding(.leading, 250)
+                        }
                     }
                     CartView(ingredientsViewModel: ingredientsViewModel)
                         .padding(10)

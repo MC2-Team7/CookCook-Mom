@@ -11,6 +11,8 @@ struct SendView: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
     @StateObject var peripheral: PeripheralViewModel
     @State private var showModal = false
+    @Environment(\.presentationMode) var presentationMode
+    
     
     var body: some View {
         NavigationView {

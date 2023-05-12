@@ -31,6 +31,8 @@
 		36673D512A0136F0001EEB19 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36673D502A0136F0001EEB19 /* ShoppingCart.swift */; };
 		36673D532A023BDD001EEB19 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36673D522A023BDD001EEB19 /* Ingredient.swift */; };
 		36673D552A0282E5001EEB19 /* IngredientC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36673D542A0282E5001EEB19 /* IngredientC.swift */; };
+		402F505B2A0AB4B70093C94B /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402F505A2A0AB4B70093C94B /* PersistenceController.swift */; };
+		402F505E2A0AB4DE0093C94B /* CookCookMom.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 402F505C2A0AB4DE0093C94B /* CookCookMom.xcdatamodeld */; };
 		6FCE85852A08D43E0086FB52 /* IngredientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCE85842A08D43E0086FB52 /* IngredientModel.swift */; };
 		6FCE85882A08D4BE0086FB52 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCE85872A08D4BE0086FB52 /* TestView.swift */; };
 		6FCE858A2A08D4C70086FB52 /* IngredientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCE85892A08D4C70086FB52 /* IngredientsViewModel.swift */; };
@@ -62,6 +64,10 @@
 		36673D502A0136F0001EEB19 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		36673D522A023BDD001EEB19 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		36673D542A0282E5001EEB19 /* IngredientC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientC.swift; sourceTree = "<group>"; };
+		402F50582A0AB3F70093C94B /* CookCookMom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CookCookMom.entitlements; sourceTree = "<group>"; };
+		402F50592A0AB4220093C94B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		402F505A2A0AB4B70093C94B /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		402F505D2A0AB4DE0093C94B /* CookCookMom.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CookCookMom.xcdatamodel; sourceTree = "<group>"; };
 		6FCE85842A08D43E0086FB52 /* IngredientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientModel.swift; sourceTree = "<group>"; };
 		6FCE85872A08D4BE0086FB52 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		6FCE85892A08D4C70086FB52 /* IngredientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewModel.swift; sourceTree = "<group>"; };
@@ -98,6 +104,8 @@
 		187ADEFA29FA5D8400C4CDCD /* CookCookMom */ = {
 			isa = PBXGroup;
 			children = (
+				402F50592A0AB4220093C94B /* Info.plist */,
+				402F50582A0AB3F70093C94B /* CookCookMom.entitlements */,
 				18DA57262A08EE7100EE16EA /* Constants */,
 				18DA57092A08E29C00EE16EA /* Model */,
 				18DA57082A08E29000EE16EA /* View */,
@@ -112,6 +120,7 @@
 				36673D542A0282E5001EEB19 /* IngredientC.swift */,
 				363087C42A0B69620062DDC9 /* Model.xcdatamodeld */,
 				187ADEFF29FA5D8500C4CDCD /* Assets.xcassets */,
+				402F505C2A0AB4DE0093C94B /* CookCookMom.xcdatamodeld */,
 				187ADF0129FA5D8500C4CDCD /* Preview Content */,
 			);
 			path = CookCookMom;
@@ -152,7 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				6FCE85842A08D43E0086FB52 /* IngredientModel.swift */,
-				363087BE2A0B68E20062DDC9 /* PersistenceController.swift */,
+				402F505A2A0AB4B70093C94B /* PersistenceController.swift */,
+
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -301,7 +311,8 @@
 				18DA572A2A08EEDC00EE16EA /* SendView.swift in Sources */,
 				363BE19D2A0A3070005E2876 /* CartView.swift in Sources */,
 				36673D552A0282E5001EEB19 /* IngredientC.swift in Sources */,
-				363087BF2A0B68E20062DDC9 /* PersistenceController.swift in Sources */,
+				402F505E2A0AB4DE0093C94B /* CookCookMom.xcdatamodeld in Sources */,
+				402F505B2A0AB4B70093C94B /* PersistenceController.swift in Sources */,
 				363087CA2A0E1B3B0062DDC9 /* DescriptionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,12 +439,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CookCookMom/CookCookMom.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CookCookMom/Preview Content\"";
-				DEVELOPMENT_TEAM = L4S47TM436;
+				DEVELOPMENT_TEAM = M8JXU75248;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CookCookMom/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "\"CookCookMom\" use bluetooth";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "\"CookCookMom\" use bluetooth";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -447,7 +460,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cookcookmom.mom;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cookcookmo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -460,12 +473,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CookCookMom/CookCookMom.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CookCookMom/Preview Content\"";
-				DEVELOPMENT_TEAM = L4S47TM436;
+				DEVELOPMENT_TEAM = M8JXU75248;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CookCookMom/Info.plist;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "\"CookCookMom\" use bluetooth";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "\"CookCookMom\" use bluetooth";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -511,13 +526,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		363087C42A0B69620062DDC9 /* Model.xcdatamodeld */ = {
+		402F505C2A0AB4DE0093C94B /* CookCookMom.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				363087C52A0B69620062DDC9 /* Model.xcdatamodel */,
+				402F505D2A0AB4DE0093C94B /* CookCookMom.xcdatamodel */,
 			);
-			currentVersion = 363087C52A0B69620062DDC9 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			currentVersion = 402F505D2A0AB4DE0093C94B /* CookCookMom.xcdatamodel */;
+			path = CookCookMom.xcdatamodeld;
+
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

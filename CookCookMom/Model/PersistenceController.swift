@@ -1,8 +1,9 @@
 //
-//  Persistence.swift
-//  TestNoti
+
+//  PersistenceController.swift
+//  CookCookMom
 //
-//  Created by JaeUngJang on 2023/05/08.
+//  Created by JaeUngJang on 2023/05/10.
 //
 
 import CoreData
@@ -14,7 +15,8 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
+            let newItem = RawIngredients(context: viewContext)
+
             newItem.timestamp = Date()
         }
         do {
@@ -28,10 +30,12 @@ struct PersistenceController {
         return result
     }()
 
-    let container: NSPersistentContainer
+
+    let container: NSPersistentCloudKitContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "Model")
+        container = NSPersistentCloudKitContainer(name: "CookCookMom")
+
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -52,5 +56,13 @@ struct PersistenceController {
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+      
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        do {
+              try container.viewContext.setQueryGenerationFrom(.current)
+        } catch {
+             fatalError("Failed to pin viewContext to the current generation:\(error)")
+        }
+
     }
 }

@@ -10,7 +10,7 @@ import CoreData
 
 struct NotificationRowView: View {
     
-    let notification: Item
+    let notification: ChoppedIngredient
     
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -30,7 +30,7 @@ struct NotificationRowView: View {
     
     func EngToKor(eng:String?) -> (String?, String?) {
         switch eng {
-        case "carrot":
+        case "carrot3D":
             return ("🥕", "당근을")
         case "mushroom":
             return ("🍄", "버섯을")
@@ -61,7 +61,7 @@ struct NotificationRowView: View {
 //                    .font(.body)
 //                EngToKor(eng: notification.ingredientName).map(Text.init)
                 
-                var sentence: (String?, String?) = EngToKor(eng: notification.ingredientName)
+                var sentence: (String?, String?) = EngToKor(eng: notification.ingredient)
                 Text("\(sentence.0!) 아이가 \(sentence.1!) 썰어 보냈습니다.")
                     .padding(1)
                     

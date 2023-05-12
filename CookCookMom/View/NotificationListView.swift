@@ -28,7 +28,7 @@ struct NotificationListView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(items, id: \.ingredientName) {
+                ForEach(items, id: \.objectID) {
                     NotificationRowView(notification: $0)
                 }
                 .onDelete(perform: deleteItem)

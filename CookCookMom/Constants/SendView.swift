@@ -66,6 +66,7 @@ struct SendView: View {
     @ObservedObject var ingredientsViewModel: IngredientsViewModel
     
     @State private var showModal = false
+    @State private var showingAlert = false
    
     @StateObject private var vm = CloudKitPushNotificationViewModel()
     
@@ -132,6 +133,7 @@ struct SendView: View {
                     
                     Button {
                         addRawIngredients(sendText: ingredientsViewModel.sendIngredientsMessage())
+                        showingAlert = true
                     } label: {
                         Text("재료 보내기")
                             .frame(width: 280, height: 50)
@@ -141,6 +143,11 @@ struct SendView: View {
                             .cornerRadius(30)
                     }
                     .padding(.top, 15)
+                    .alert(isPresented: $showingAlert, content: {
+                        Alert(title: Text("아이에게 재료를 보냈습니다😄"),
+                              message: Text("아이에게 보냈다고 알려주세요~"))
+                    })
+                    
 
                     
                 }

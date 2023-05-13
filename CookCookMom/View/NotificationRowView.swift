@@ -80,9 +80,7 @@ struct NotificationRowView: View {
                 }
             }
             Spacer()
-            Image(systemName: "heart")
         }
-
     }
 }
 

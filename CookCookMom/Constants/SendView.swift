@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct SendView: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
     @StateObject var peripheral: PeripheralViewModel
     @State private var showModal = false
     @Environment(\.presentationMode) var presentationMode
+    @State var isLoading: Bool = true
     
     
     var body: some View {
+        ZStack {
         NavigationView {
             ZStack{
                 Color(red: 242 / 255, green: 242 / 255, blue: 247 / 255)
@@ -123,6 +126,23 @@ struct SendView: View {
                     peripheral.stopAction()
                 }
             }
+        }
+            // Launch Screen
+            if isLoading {
+                launchScreenView
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: { isLoading.toggle()
+            })
+        }
+    }
+}
+
+extension SendView {
+    var launchScreenView: some View {
+        ZStack(alignment: .center) {
+            Image("LaunchScreenImage").ignoresSafeArea(.all)
         }
     }
 }

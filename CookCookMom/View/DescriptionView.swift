@@ -63,7 +63,7 @@ struct DescriptionView: View {
                         .foregroundColor(.blue)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding([.leading,.bottom,.top])
-                    Text("아이가 손질한 재료를 받으면 아이를 칭찬해주세요❤️ \n\n그 외의 역할놀이에도 사용해도 좋습니다")
+                    Text("아이가 손질한 재료를 받으면 아이를 칭찬해주세요❤️ \n\n그 외의 역할놀이에도 사용해도 좋습니다!")
                         .font(.body)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading)

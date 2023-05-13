@@ -69,8 +69,13 @@ struct SendView: View {
     @State private var showingAlert = false
    
     @StateObject private var vm = CloudKitPushNotificationViewModel()
+
+    @Environment(\.presentationMode) var presentationMode
+    @State var isLoading: Bool = true
+    
     
     var body: some View {
+        ZStack {
         NavigationView {
             ZStack{
                 
@@ -186,6 +191,23 @@ struct SendView: View {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
+        }
+            // Launch Screen
+            if isLoading {
+                launchScreenView
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: { isLoading.toggle()
+            })
+        }
+    }
+}
+
+extension SendView {
+    var launchScreenView: some View {
+        ZStack(alignment: .center) {
+            Image("LaunchScreenImage").ignoresSafeArea(.all)
         }
     }
 }

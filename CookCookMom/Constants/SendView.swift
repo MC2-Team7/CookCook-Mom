@@ -23,7 +23,6 @@ class CloudKitPushNotificationViewModel: ObservableObject {
             } else {
                 print("notification permissions failure!")
             }
-            
         }
     }
     
@@ -76,88 +75,97 @@ struct SendView: View {
     
     var body: some View {
         ZStack {
-        NavigationView {
-            ZStack{
-                
-                Color(red: 242 / 255, green: 242 / 255, blue: 247 / 255)
-                    .ignoresSafeArea()
-                VStack {
-                    HStack {
-                        Button(action: { self.showModal = true}){ Image(systemName: "info.circle.fill")
-                                .resizable()
-                                .frame(width: 25, height: 25)
-                                .foregroundColor(.black)
-                                .padding([.top,.trailing])
-                        }.sheet(isPresented: self.$showModal) {
-                            DescriptionView()
-                        }
-                        .onAppear{
-                            vm.requestNotiPermision()
-                            vm.subscribeToNoti()
-                        }
-                        
-                        
-                        NavigationLink {
-                            NotificationListView()
-                        } label: {
-                            if ingredientsViewModel.newNoti {
-                                Image(systemName: "bell.badge.fill")
-                                    .resizable()
-                                    .frame(width: 25, height: 25)
-                                    .foregroundStyle(.red,.black)
-                                    .padding(.top)
-                                    .padding(.leading, 250)
-                            } else {
-                                Image(systemName: "bell.fill")
+            NavigationView {
+                ZStack{
+                    
+                    Color(red: 242 / 255, green: 242 / 255, blue: 247 / 255)
+                        .ignoresSafeArea()
+                    VStack {
+                        HStack {
+                            Button(action: { self.showModal = true}){ Image(systemName: "info.circle.fill")
                                     .resizable()
                                     .frame(width: 25, height: 25)
                                     .foregroundColor(.black)
-                                    .padding(.top)
-                                    .padding(.leading, 250)
+                                    .padding([.top,.trailing])
+                            }.sheet(isPresented: self.$showModal) {
+                                DescriptionView()
                             }
-                        }.simultaneousGesture(TapGesture().onEnded{
-                            ingredientsViewModel.checkNotification()
-                        })
-                    }
-                    CartView(ingredientsViewModel: ingredientsViewModel)
-                        .padding(10)
-                    Text("아이에게 어떤 재료를 보낼까요?")
-                        .font(.title2)
-                        .bold()
-                        .padding(20)
+                            .onAppear{
+                                vm.requestNotiPermision()
+                                vm.subscribeToNoti()
+                            }
+                            
+                            
+                            NavigationLink {
+                                NotificationListView()
+                            } label: {
+                                if ingredientsViewModel.newNoti {
+                                    Image(systemName: "bell.badge.fill")
+                                        .resizable()
+                                        .frame(width: 25, height: 25)
+                                        .foregroundStyle(.red,.black)
+                                        .padding(.top)
+                                        .padding(.leading, 250)
+                                } else {
+                                    Image(systemName: "bell.fill")
+                                        .resizable()
+                                        .frame(width: 25, height: 25)
+                                        .foregroundColor(.black)
+                                        .padding(.top)
+                                        .padding(.leading, 250)
+                                }
+                            }.simultaneousGesture(TapGesture().onEnded{
+                                ingredientsViewModel.checkNotification()
+                            })
+                        }
+                        CartView(ingredientsViewModel: ingredientsViewModel)
+                            .padding(10)
+                        Text("아이에게 어떤 재료를 보낼까요?")
+                            .font(.title2)
+                            .bold()
+                            .padding(20)
                         
-                    ForEach(0..<3) { stack in
-                        HStack{
-                            ForEach(stack*3..<stack*3+3,id: \.self) { index in
-                                IngredientButton(ingredientsViewModel: ingredientsViewModel, index: index)
+                        ForEach(0..<3) { stack in
+                            HStack{
+                                ForEach(stack*3..<stack*3+3,id: \.self) { index in
+                                    IngredientButton(ingredientsViewModel: ingredientsViewModel, index: index)
+                                }
                             }
                         }
+                        
+                        
+                        
+                        Button {
+                            addRawIngredients(sendText: ingredientsViewModel.sendIngredientsMessage())
+                            showingAlert = true
+                        } label: {
+                            Text("재료 보내기")
+                                .frame(width: 280, height: 50)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                                .background(Color.blue)
+                                .cornerRadius(30)
+                        }
+                        .padding(.top, 15)
+                        .alert(isPresented: $showingAlert, content: {
+                            Alert(title: Text("아이에게 재료를 보냈습니다😄"),
+                                  message: Text("아이에게 보냈다고 알려주세요~"))
+                        })
+                        
+                        
+                        
                     }
-                    
-                    
-                    
-                    Button {
-                        addRawIngredients(sendText: ingredientsViewModel.sendIngredientsMessage())
-                        showingAlert = true
-                    } label: {
-                        Text("재료 보내기")
-                            .frame(width: 280, height: 50)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                            .background(Color.blue)
-                            .cornerRadius(30)
-                    }
-                    .padding(.top, 15)
-                    .alert(isPresented: $showingAlert, content: {
-                        Alert(title: Text("아이에게 재료를 보냈습니다😄"),
-                              message: Text("아이에게 보냈다고 알려주세요~"))
-                    })
-                    
-
                     
                 }
-                
             }
+            // Launch Screen
+            if isLoading {
+                launchScreenView
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: { isLoading.toggle()
+            })
         }
     }
     
@@ -191,15 +199,6 @@ struct SendView: View {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
-        }
-            // Launch Screen
-            if isLoading {
-                launchScreenView
-            }
-        }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: { isLoading.toggle()
-            })
         }
     }
 }

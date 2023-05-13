@@ -8,15 +8,12 @@
 import SwiftUI
 
 struct SendIngredientsButton: View {
-    @StateObject var peripheral: PeripheralViewModel = PeripheralViewModel()
     @StateObject var sendViewModel: IngredientsViewModel
     @Binding var sendable: Bool
     
     var body: some View {
         Button(action: {
-            peripheral.message = sendViewModel.sendIngredientsMessage()
-            print(peripheral.message)
-            peripheral.isPossibleToSend = sendable
+            
         }) {
             Text("재료 보내기")
                 .frame(width: 280, height: 50)

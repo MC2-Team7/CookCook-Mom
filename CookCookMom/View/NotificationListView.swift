@@ -13,14 +13,14 @@ struct NotificationListView: View {
     // 1.
     @FetchRequest(
         // 2.
-        entity: Item.entity(),
+        entity: ChoppedIngredient.entity(),
         // 3.
         sortDescriptors: [
-            NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)
+            NSSortDescriptor(keyPath: \ChoppedIngredient.timestamp, ascending: false)
         ]
         //,predicate: NSPredicate(format: "genre contains 'Action'")
         // 4.
-    ) var items: FetchedResults<Item>
+    ) var items: FetchedResults<ChoppedIngredient>
     
     @State var isPresented = false
     @State var receivedMsg = ["carrot", "mushroom", "fish", "scallion", "onion", "paprika", "potato", "eggplant", "meat"]
@@ -28,7 +28,7 @@ struct NotificationListView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(items, id: \.objectID) {
+                ForEach(items, id: \.ingredient) {
                     NotificationRowView(notification: $0)
                 }
                 .onDelete(perform: deleteItem)
@@ -39,13 +39,7 @@ struct NotificationListView: View {
             //                    self.isPresented = false
             //                }
             //            }
-            .navigationBarItems(trailing:
-                Button(action: {
-                addItem(ingredientName: receivedMsg.randomElement()!, liked: false, timestamp: Date.now)
-                }) {
-                    Image(systemName: "plus")
-                }
-            )
+            
             .listStyle(.automatic)
         }
     }
@@ -65,18 +59,18 @@ struct NotificationListView: View {
     }
     
     
-    func addItem(ingredientName: String, liked: Bool, timestamp: Date) {
-        // 1
-        let newItem = Item(context: managedObjectContext)
-        
-        // 2
-        newItem.ingredientName = ingredientName
-        newItem.liked = liked
-        newItem.timestamp = timestamp
-        
-        // 3
-        saveContext()
-    }
+//    func addItem(ingredientName: String, liked: Bool, timestamp: Date) {
+//        // 1
+//        let newItem = Item(context: managedObjectContext)
+//
+//        // 2
+//        newItem.ingredientName = ingredientName
+//        newItem.liked = liked
+//        newItem.timestamp = timestamp
+//
+//        // 3
+//        saveContext()
+//    }
     
     
     func saveContext() {

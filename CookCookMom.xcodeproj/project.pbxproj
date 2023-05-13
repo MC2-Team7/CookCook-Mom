@@ -430,6 +430,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CookCookMom/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ChopChopMom;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "\"CookCookMom\" use bluetooth";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "\"CookCookMom\" use bluetooth";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -464,6 +465,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CookCookMom/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ChopChopMom;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "\"CookCookMom\" use bluetooth";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "\"CookCookMom\" use bluetooth";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

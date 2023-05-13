@@ -15,7 +15,7 @@ struct ContentView: View {
     @StateObject var peripheral: PeripheralViewModel = PeripheralViewModel()
     
     var body: some View {
-        SendView(ingredientsViewModel: ingredientsViewModel, peripheral: peripheral)
+        SendView(ingredientsViewModel: ingredientsViewModel)
             .environment(\.managedObjectContext, persistenceController.container.viewContext)
     }
 }

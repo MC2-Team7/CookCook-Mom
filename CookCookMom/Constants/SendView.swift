@@ -6,6 +6,47 @@
 //
 
 import SwiftUI
+import CloudKit
+
+class CloudKitPushNotificationViewModel: ObservableObject {
+    func requestNotiPermision() {
+        let option: UNAuthorizationOptions = [.alert,.sound,.badge]
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: option) { success, error in
+            if let error = error {
+                print(error)
+            } else if success {
+                print("notification permissions success!")
+                DispatchQueue.main.sync {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            } else {
+                print("notification permissions failure!")
+            }
+            
+        }
+    }
+    
+    func subscribeToNoti() {
+        let predicate = NSPredicate(value: true)
+        let subscription = CKQuerySubscription(recordType: "CD_ChoppedIngredient", predicate: predicate, subscriptionID: "ChoppedIngredient_added_to_database", options: .firesOnRecordCreation )
+        let notification = CKSubscription.NotificationInfo()
+        notification.title = "아이가 재료를 손질해서 보냈어요!"
+        notification.alertBody = "아이에게 칭찬의 한마디 부탁드립니다 :)"
+        notification.soundName = "default"
+        
+        subscription.notificationInfo = notification
+        
+        CKContainer.default().privateCloudDatabase.save(subscription) { returnedSubscription, returnedError in
+            if let error = returnedError {
+                print(error)
+            } else {
+                print("Successfully subscribed to notifications!")
+            }
+            
+        }
+    }
+}
 
 struct SendView: View {
     
@@ -22,13 +63,16 @@ struct SendView: View {
     private var choppedIngredients: FetchedResults<ChoppedIngredient>
 
 
-    @StateObject var ingredientsViewModel: IngredientsViewModel
-    @StateObject var peripheral: PeripheralViewModel
+    @ObservedObject var ingredientsViewModel: IngredientsViewModel
+    
     @State private var showModal = false
+   
+    @StateObject private var vm = CloudKitPushNotificationViewModel()
     
     var body: some View {
         NavigationView {
             ZStack{
+                
                 Color(red: 242 / 255, green: 242 / 255, blue: 247 / 255)
                     .ignoresSafeArea()
                 VStack {
@@ -41,17 +85,33 @@ struct SendView: View {
                         }.sheet(isPresented: self.$showModal) {
                             DescriptionView()
                         }
-                
+                        .onAppear{
+                            vm.requestNotiPermision()
+                            vm.subscribeToNoti()
+                        }
+                        
+                        
                         NavigationLink {
                             NotificationListView()
                         } label: {
-                            Image(systemName: "bell.fill")
-                                .resizable()
-                                .frame(width: 25, height: 25)
-                                .foregroundColor(.black)
-                                .padding(.top)
-                                .padding(.leading, 250)
-                        }
+                            if ingredientsViewModel.newNoti {
+                                Image(systemName: "bell.badge.fill")
+                                    .resizable()
+                                    .frame(width: 25, height: 25)
+                                    .foregroundStyle(.red,.black)
+                                    .padding(.top)
+                                    .padding(.leading, 250)
+                            } else {
+                                Image(systemName: "bell.fill")
+                                    .resizable()
+                                    .frame(width: 25, height: 25)
+                                    .foregroundColor(.black)
+                                    .padding(.top)
+                                    .padding(.leading, 250)
+                            }
+                        }.simultaneousGesture(TapGesture().onEnded{
+                            ingredientsViewModel.checkNotification()
+                        })
                     }
                     CartView(ingredientsViewModel: ingredientsViewModel)
                         .padding(10)
@@ -59,6 +119,7 @@ struct SendView: View {
                         .font(.title2)
                         .bold()
                         .padding(20)
+                        
                     ForEach(0..<3) { stack in
                         HStack{
                             ForEach(stack*3..<stack*3+3,id: \.self) { index in
@@ -66,6 +127,7 @@ struct SendView: View {
                             }
                         }
                     }
+                    
                     
                     
                     Button {
@@ -77,14 +139,6 @@ struct SendView: View {
                             .foregroundColor(.white)
                             .background(Color.blue)
                             .cornerRadius(30)
-                    }
-                    .alert(isPresented: $peripheral.isSent) {
-                        Alert(title: Text("전송 완료"), message: Text("재료 전송이 완료되었습니다."), dismissButton: .default(Text("확인")) {
-                            peripheral.isPossibleToSend = false
-                            peripheral.isSent = false
-                            peripheral.switchChanged()
-                            ingredientsViewModel.resetIngredients()
-                        })
                     }
                     .padding(.top, 15)
 
@@ -138,6 +192,6 @@ private let itemFormatter: DateFormatter = {
 
 struct SendView_Previews: PreviewProvider {
     static var previews: some View {
-        SendView(ingredientsViewModel: IngredientsViewModel(ingredientModels: [.carrot,.mushroom,.fish,.scallion,.onion,.paprika,.potato,.eggplant,.meat]), peripheral: PeripheralViewModel())
+        SendView(ingredientsViewModel: IngredientsViewModel(ingredientModels: [.carrot,.mushroom,.fish,.scallion,.onion,.paprika,.potato,.eggplant,.meat]))
     }
 }

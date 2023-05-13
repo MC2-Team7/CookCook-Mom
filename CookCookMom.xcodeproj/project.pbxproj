@@ -18,10 +18,9 @@
 		18DA572A2A08EEDC00EE16EA /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA57292A08EEDC00EE16EA /* SendView.swift */; };
 		18DA572D2A08EF0C00EE16EA /* SendIngredientsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA572C2A08EF0C00EE16EA /* SendIngredientsButton.swift */; };
 		18DA572F2A09222C00EE16EA /* CentralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA572E2A09222C00EE16EA /* CentralView.swift */; };
-		363087BF2A0B68E20062DDC9 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363087BE2A0B68E20062DDC9 /* PersistenceController.swift */; };
 		363087C12A0B69100062DDC9 /* NotificationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363087C02A0B69100062DDC9 /* NotificationListView.swift */; };
 		363087C32A0B69240062DDC9 /* NotificationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363087C22A0B69240062DDC9 /* NotificationRowView.swift */; };
-		363087C62A0B69620062DDC9 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 363087C42A0B69620062DDC9 /* Model.xcdatamodeld */; };
+		363087C62A0B69620062DDC9 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		363087CA2A0E1B3B0062DDC9 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363087C92A0E1B3B0062DDC9 /* DescriptionView.swift */; };
 		363BE19D2A0A3070005E2876 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363BE19C2A0A3070005E2876 /* CartView.swift */; };
 		36673D292A00D1DA001EEB19 /* NotificationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36673D282A00D1DA001EEB19 /* NotificationButton.swift */; };
@@ -51,10 +50,8 @@
 		18DA57292A08EEDC00EE16EA /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SendView.swift; path = CookCookMom/Constants/SendView.swift; sourceTree = SOURCE_ROOT; };
 		18DA572C2A08EF0C00EE16EA /* SendIngredientsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendIngredientsButton.swift; sourceTree = "<group>"; };
 		18DA572E2A09222C00EE16EA /* CentralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralView.swift; sourceTree = "<group>"; };
-		363087BE2A0B68E20062DDC9 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		363087C02A0B69100062DDC9 /* NotificationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListView.swift; sourceTree = "<group>"; };
 		363087C22A0B69240062DDC9 /* NotificationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRowView.swift; sourceTree = "<group>"; };
-		363087C52A0B69620062DDC9 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		363087C92A0E1B3B0062DDC9 /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		363BE19C2A0A3070005E2876 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		36673D282A00D1DA001EEB19 /* NotificationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationButton.swift; sourceTree = "<group>"; };
@@ -118,7 +115,6 @@
 				36673D502A0136F0001EEB19 /* ShoppingCart.swift */,
 				36673D522A023BDD001EEB19 /* Ingredient.swift */,
 				36673D542A0282E5001EEB19 /* IngredientC.swift */,
-				363087C42A0B69620062DDC9 /* Model.xcdatamodeld */,
 				187ADEFF29FA5D8500C4CDCD /* Assets.xcassets */,
 				402F505C2A0AB4DE0093C94B /* CookCookMom.xcdatamodeld */,
 				187ADF0129FA5D8500C4CDCD /* Preview Content */,
@@ -162,7 +158,6 @@
 			children = (
 				6FCE85842A08D43E0086FB52 /* IngredientModel.swift */,
 				402F505A2A0AB4B70093C94B /* PersistenceController.swift */,
-
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -290,7 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18DA57282A08EE8F00EE16EA /* TransferService.swift in Sources */,
-				363087C62A0B69620062DDC9 /* Model.xcdatamodeld in Sources */,
+				363087C62A0B69620062DDC9 /* (null) in Sources */,
 				36673D2F2A00D1EC001EEB19 /* SelectView.swift in Sources */,
 				36673D292A00D1DA001EEB19 /* NotificationButton.swift in Sources */,
 				187ADEFE29FA5D8400C4CDCD /* ContentView.swift in Sources */,
@@ -460,7 +455,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cookcookmo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.myApp.container;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -533,7 +528,6 @@
 			);
 			currentVersion = 402F505D2A0AB4DE0093C94B /* CookCookMom.xcdatamodel */;
 			path = CookCookMom.xcdatamodeld;
-
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -13,7 +13,6 @@
 		187ADF0329FA5D8500C4CDCD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 187ADF0229FA5D8500C4CDCD /* Preview Assets.xcassets */; };
 		187ADF0A29FA5F2500C4CDCD /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 187ADF0929FA5F2500C4CDCD /* .gitignore */; };
 		18DA57232A08EDE600EE16EA /* CentralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA57222A08EDE600EE16EA /* CentralViewModel.swift */; };
-		18DA57252A08EE1600EE16EA /* PeripheralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA57242A08EE1600EE16EA /* PeripheralViewModel.swift */; };
 		18DA57282A08EE8F00EE16EA /* TransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA57272A08EE8F00EE16EA /* TransferService.swift */; };
 		18DA572A2A08EEDC00EE16EA /* SendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA57292A08EEDC00EE16EA /* SendView.swift */; };
 		18DA572D2A08EF0C00EE16EA /* SendIngredientsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA572C2A08EF0C00EE16EA /* SendIngredientsButton.swift */; };
@@ -45,7 +44,6 @@
 		187ADF0229FA5D8500C4CDCD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		187ADF0929FA5F2500C4CDCD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		18DA57222A08EDE600EE16EA /* CentralViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralViewModel.swift; sourceTree = "<group>"; };
-		18DA57242A08EE1600EE16EA /* PeripheralViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralViewModel.swift; sourceTree = "<group>"; };
 		18DA57272A08EE8F00EE16EA /* TransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferService.swift; sourceTree = "<group>"; };
 		18DA57292A08EEDC00EE16EA /* SendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SendView.swift; path = CookCookMom/Constants/SendView.swift; sourceTree = SOURCE_ROOT; };
 		18DA572C2A08EF0C00EE16EA /* SendIngredientsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendIngredientsButton.swift; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				18DA571F2A08ED7F00EE16EA /* Central */,
-				18DA57212A08ED9200EE16EA /* Peripheral */,
 				18DA57202A08ED8600EE16EA /* SendIngredients */,
 			);
 			path = ViewModel;
@@ -176,14 +173,6 @@
 				6FCE85892A08D4C70086FB52 /* IngredientsViewModel.swift */,
 			);
 			path = SendIngredients;
-			sourceTree = "<group>";
-		};
-		18DA57212A08ED9200EE16EA /* Peripheral */ = {
-			isa = PBXGroup;
-			children = (
-				18DA57242A08EE1600EE16EA /* PeripheralViewModel.swift */,
-			);
-			path = Peripheral;
 			sourceTree = "<group>";
 		};
 		18DA57262A08EE7100EE16EA /* Constants */ = {
@@ -298,7 +287,6 @@
 				36673D2B2A00D1E2001EEB19 /* IngredientButton.swift in Sources */,
 				6FCE858A2A08D4C70086FB52 /* IngredientsViewModel.swift in Sources */,
 				18DA572F2A09222C00EE16EA /* CentralView.swift in Sources */,
-				18DA57252A08EE1600EE16EA /* PeripheralViewModel.swift in Sources */,
 				363087C32A0B69240062DDC9 /* NotificationRowView.swift in Sources */,
 				363087C12A0B69100062DDC9 /* NotificationListView.swift in Sources */,
 				187ADEFC29FA5D8400C4CDCD /* CookCookMomApp.swift in Sources */,

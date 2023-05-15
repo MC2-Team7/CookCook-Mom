@@ -138,6 +138,7 @@ struct SendView: View {
                         Button {
                             addRawIngredients(sendText: ingredientsViewModel.sendIngredientsMessage())
                             showingAlert = true
+                            ingredientsViewModel.resetIngredients()
                         } label: {
                             Text("재료 보내기")
                                 .frame(width: 280, height: 50)

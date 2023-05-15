@@ -72,6 +72,7 @@ struct SendView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var isLoading: Bool = true
     
+    @ObservedObject var networkManager = NetworkManager()
     
     var body: some View {
         ZStack {
@@ -151,6 +152,9 @@ struct SendView: View {
                         .alert(isPresented: $showingAlert, content: {
                             Alert(title: Text("아이에게 재료를 보냈습니다😄"),
                                   message: Text("아이에게 보냈다고 알려주세요~"))
+                        })
+                        .alert(isPresented: $networkManager.isntConnected , content: {
+                            Alert(title: Text("네트워크를 연결 해주세요!"))
                         })
                         
                         

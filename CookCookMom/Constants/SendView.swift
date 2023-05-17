@@ -81,6 +81,9 @@ struct SendView: View {
                     
                     Color(red: 242 / 255, green: 242 / 255, blue: 247 / 255)
                         .ignoresSafeArea()
+                        .alert(isPresented: $networkManager.isntConnected , content: {
+                            Alert(title: Text("네트워크를 연결 해주세요!"))
+                        })
                     VStack {
                         HStack {
                             Button(action: { self.showModal = true}){ Image(systemName: "info.circle.fill")
@@ -153,9 +156,7 @@ struct SendView: View {
                             Alert(title: Text("아이에게 재료를 보냈습니다😄"),
                                   message: Text("아이에게 보냈다고 알려주세요~"))
                         })
-                        .alert(isPresented: $networkManager.isntConnected , content: {
-                            Alert(title: Text("네트워크를 연결 해주세요!"))
-                        })
+                        
                         
                         
                         

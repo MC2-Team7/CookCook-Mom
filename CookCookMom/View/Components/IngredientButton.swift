@@ -9,7 +9,6 @@ import SwiftUI
 
 struct IngredientButton: View {
     @StateObject var ingredientsViewModel: IngredientsViewModel
-    @StateObject var peripheral: PeripheralViewModel = PeripheralViewModel()
     var index: Int
 
     

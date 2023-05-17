@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import CloudKit
 
 class IngredientsViewModel : ObservableObject {
     @Published var ingredientModels : [IngredientModel]
     @Published var sendMessage: String = ""
     @Published var canSend: Bool = false
+    @Published var newNoti: Bool = false
     
     var clickCount: Int = 0 {
         didSet {
@@ -55,7 +57,15 @@ class IngredientsViewModel : ObservableObject {
         }
         clickCount = 0
     }
+    
+    //알람 확인 함수
+    func checkNotification() {
+        self.newNoti = false
+    }
+    
+    //새로운 알람 올 경우
+    func newNotification() {
+        self.newNoti = true
+    }
+    
 }
-
-
-
